@@ -1,7 +1,10 @@
 import categories from './_categories.js';
+import sortedColors from '../../../data/quantumColorsSorted'
 
 const contents = JSON.stringify(categories.map(color => {
-	return color;
+	color.nearestColor = sortedColors[color.slug][0]
+	
+	return color
 }));
 
 export function get(req, res) {
@@ -9,5 +12,5 @@ export function get(req, res) {
 		'Content-Type': 'application/json'
 	});
 
-	res.end(contents);
+	res.end(contents)
 }

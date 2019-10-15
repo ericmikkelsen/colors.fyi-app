@@ -7,13 +7,19 @@
 </script>
 
 <script>
-	export let categories;
+	import { hexToHSL } from "../../../modules/formatColor.mjs";
+	export let categories
+	categories.sort( (color1, color2) => {
+		const hsl1 = hexToHSL(color1.nearestColor)
+		const hsl2 = hexToHSL(color2.nearestColor)
+		return hsl1[0] > hsl2[0] ? 1 : -1
+	} )
 </script>
 
 <style>
     ul {
         list-style: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E");
-        padding: 0;
+        padding: 0 0 0 5%;
         margin: 0;
     }
 	li {
@@ -21,10 +27,24 @@
 		margin: 0;
 	}
 	li a {
-		display: inline-block;
-		padding: 0;
-		font-size: 3rem;
-		font-weight: 900;
+		display: block;
+		padding: var(--s4);
+		font: var(--f600);
+		color: var(--neutral0);
+		background: var(--c);
+	}
+
+	li a::after {
+		content: ' ←';
+		opacity: .00000001;
+	}
+	li a:focus::after {
+		opacity: .999999999;
+	}
+	h1 {
+   		padding: 5% 0 10% 5%;
+		font: var(--f800);
+		margin: 0;
 	}
 
 </style>
@@ -39,10 +59,10 @@
 	{#each categories as category}
 		<li>
 			<a 
-				style="color: {category.slug}"
+				style="--c: #{category.nearestColor}"
 				href="/categories/{category.slug}"
 			>
-				{category.slug}
+				{category.name}
 			</a>
 		</li>
 	{/each}

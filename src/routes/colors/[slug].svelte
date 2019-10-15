@@ -9,7 +9,7 @@
     if (res.status === 200) {
       const colors = paletteHueShift(params.slug);
       return {
-        color: params.slug,
+        c: colorObject(params.slug),
         colors: colors.map( color => {
           const colorObj = colorObject(color)
           colorObj.current = colorObj.a11y.white || colorObj.a11y.black
@@ -26,16 +26,16 @@
 <script>
   import { palette } from '../store/index.js';
 
-  export let color;
+  export let c;
   export let colors;
-  export let chosen = palette[color] ? true : false
+  export let chosen = palette[c.hex] ? true : false
   const toggleColor = () => {
     let p = palette
-    if (p[color] ){
-      delete p[color]
+    if (p[c.hex] ){
+      delete p[c.hex]
       chosen = false
     } else {
-      p[color] = colors
+      p[c.hex] = colors
       chosen = true
     }
     palette.set(p)
@@ -43,7 +43,10 @@
 </script>
 
 <style>
-  ol,
+  ol {
+    margin: 0;
+    padding: 0 0 0 5%;
+  }
   li {
     padding: 0;
     margin: 0;
@@ -51,60 +54,68 @@
 
   ol {
     list-style: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E");
-    counter-reset: item;
-	counter-reset:item -10;
   }
   ol > li {
-	counter-increment:item 10;
-	padding: 1.25% 2.5%;
-	color: #000;
+    color: var(--neutral100);
   }
   ol > li:nth-child(5) ~ * {
-	  color: #fff;
+	  color: var(--neutral0);
   }
-  ol > li:nth-child(6)::after {
-	display: inline;
-    content: var(--c);
-	color: #000;
+  header {
+   padding: 5% 0 10% 5%;
   }
-  ol > li:before {
-	display: inline;
-    content: counter(item) " ";
+  h1 {
+    font: var(--f700);
+    margin: 0 0 var(--s3);
   }
   button {
-    background: #fff;
-    font-size: 2rem;
-    line-height: 1;
-    padding: .5rem;
-    border: 1px solid;
-    border-radius: 99em;
-    margin-bottom: 1rem;
+    background-color: var(--c);
+    color: var(--neutral0);
+    font: var(--f600);
+    padding: var(--s1);
+    border: none;
+  }
+  details {
+    font: var(--f600);
+  }
+  details p {
+    font: var(--f400);
+    padding: var(--s1) var(--s4) var(--s4); 
+    margin: 0;
+  }
+  summary {
+    padding: var(--s4);
   }
 </style>
 
-
-<div class="content">
+<header>
+  <h1>
+    {c.name}
+  </h1>
   <button 
-    style="color: #{color}"
+    style="--c: #{c.hex}"
     on:click={toggleColor} 
-  >
-    {color} {chosen ? '-' : '+'}
+  > 
+
+    {chosen ? '- remove this swatch from your palette' : '+ add this swatch to your palette'}
   </button>
-  <ol>
-    {#each colors as color}
-      <li style="background-color: {color.hex};--c: {color.hex}">
-        <details>
-          <summary>
-            {color.hex}
-          </summary>
-            luminance: {color.luminance.toFixed(4)}<br>
-            contrast: {color.current.contrast.toFixed(4)}<br>
-            aa: {color.current.aa}<br>
-            aaa: {color.current.aaa}<br>
-            aaa: {color.current.aaLg}<br>
-            aaa: {color.current.aaaLg}<br>
-        </details>
-      </li>
-    {/each}
-  </ol>
-</div>
+</header>
+<ol>
+  {#each colors as color, index}
+    <li style="background-color: {color.hex};--c: {color.hex}">
+      <details>
+        <summary>
+          {c.name}{(index * 10)}
+        </summary>
+        <p>
+          luminance: {color.luminance.toFixed(4)}<br>
+          contrast: {color.current.contrast.toFixed(4)}<br>
+          aa: {color.current.aa}<br>
+          aaa: {color.current.aaa}<br>
+          aaa: {color.current.aaLg}<br>
+          aaa: {color.current.aaaLg}<br>
+        </p>
+      </details>
+    </li>
+  {/each}
+</ol>

@@ -4,54 +4,23 @@
 
 <style>
 	nav {
-		border-bottom: 1px solid rgba(255,62,0,0.1);
-		font-weight: 300;
-		padding: 0 1em;
-	}
-
-	ul {
-		margin: 0;
+		background-color: var(--neutral100);
+		color: var(--neutral0);
 		padding: 0;
+		width: 95%;
+		margin-left: auto;
 	}
-
-	/* clearfix */
-	ul::after {
-		content: '';
-		display: block;
-		clear: both;
-	}
-
-	li {
-		display: block;
-		float: left;
-	}
-
-	.selected {
-		position: relative;
-		display: inline-block;
-	}
-
-	.selected::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		height: 2px;
-		background-color: rgb(255,62,0);
-		display: block;
-		bottom: -1px;
-	}
-
 	a {
-		text-decoration: none;
-		padding: 1em 0.5em;
 		display: block;
+		padding: var(--s3);
+		margin: 0;
+		font: var(--f500);
+		color: inherit;
 	}
 </style>
 
 <nav>
-	<ul>
-		<li><a class='{segment === "" ? "selected" : ""}' href='/'>Home</a></li>
-		<li><a class='{segment === "categories" ? "selected" : ""}' href='categories'>categories</a></li>
-		<li><a class='{segment === "color-matrix" ? "selected" : ""}' href='color-matrix'>Color Matrix</a></li>
-	</ul>
+	<a class='{segment === "" ? "selected" : ""}' href='/'>Home</a>
+	<a class='{segment === "categories" ? "selected" : ""}' href='categories'>categories</a>
+	<a class='{segment === "color-matrix" ? "selected" : ""}' href='color-matrix'>Color Matrix</a>
 </nav>

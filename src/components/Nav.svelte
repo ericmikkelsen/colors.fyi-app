@@ -21,6 +21,6 @@
 
 <nav>
 	<a class='{segment === "" ? "selected" : ""}' href='/'>Home</a>
-	<a class='{segment === "categories" ? "selected" : ""}' href='categories'>categories</a>
-	<a class='{segment === "color-matrix" ? "selected" : ""}' href='color-matrix'>Color Matrix</a>
+	<!-- <a class='{segment === "categories" ? "selected" : ""}' href='categories'>categories</a> -->
+	<!-- <a class='{segment === "color-matrix" ? "selected" : ""}' href='color-matrix'>Color Matrix</a> -->
 </nav>

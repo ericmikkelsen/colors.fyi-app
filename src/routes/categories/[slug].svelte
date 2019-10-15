@@ -22,7 +22,7 @@
 <script>
     export let category;
     import { hexToHSL } from "../../../modules/formatColor.mjs";
-
+    import Details from '../../components/Details.svelte'
     const HSLKey = (color) => {
         const hsl = hexToHSL(color)
         const h = Math.round((hsl[0] * 10)).toString();
@@ -62,14 +62,8 @@
         min-width: 10%;
         padding: 0;
     }
-    li details {
-        display: inline-block;
-        width: 100%;
-        padding: 0;
-        background-color: var(--c);
-    }
     li a {
-        background-color: var(--c);
+        background-color: var(--c1);
         display: block;
         color: #fff;
         padding: var(--s4);
@@ -78,18 +72,9 @@
         font: var(--f600);
         font-family: monospace;
     }
-
-    summary {
-        background-image: linear-gradient(0.25turn, var(--c1), var(--c2));
-		display: block;
-		padding: var(--s4);
-		font: var(--f600);
-		color: var(--neutral0);
+    :global(.Details--category) {
+        display: inline-block;
         width: 100%;
-    }
-    summary:focus {
-		outline: 1px solid;
-		text-decoration: none;
     }
 </style>
 
@@ -101,10 +86,12 @@
 <ul>
     {#each Object.values(list) as cols, index}
         <li>
-            <details style="--c:#{cols[0]}">
-                <summary style="--c1:#{cols[0]}; --c2: #{cols.slice(-1)[0]}">
-                    {category.name}{index + 1}
-                </summary>
+            <Details 
+                c1={'#'+cols[0]}
+                c2={'#'+cols.slice(-1)[0]}
+                modifier={'Details--category'}
+                summaryText={category.name}{index + 1} 
+            >
                 <ul>
                     {#each cols as color}
                         <li>
@@ -112,7 +99,7 @@
                         </li>
                     {/each}
                 </ul>
-            </details>
+            </Details>
         </li>
     {/each}
 </ul>

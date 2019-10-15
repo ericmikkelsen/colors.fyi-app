@@ -39,11 +39,20 @@ a {
 	color: inherit;
 }
 
-button:focus, 
-summary:focus,
+button:focus,
 a:focus {
 	outline: 1px solid;
 	outline-offset: -3px;
 	text-decoration: none;
 }
 
+summary::after {
+	content: ' ←';
+	opacity: .00000001;
+}
+summary:focus {
+	outline: none;
+}
+summary:focus::after {
+	opacity: .999999999;
+}

@@ -104,8 +104,7 @@ export const RGBToHex = (RGB) => {
 
 
 export const cleanHex = ( hexColor ) => {
-    // strip out hash
-    let color = hexColor.replace('#','');
+    let color = hexColor.includes('#') ? hexColor.replace('#','') : hexColor
     return color.length === 3 ? color.split('').map(( character )=>{
         return character + character
     }).join(''): color;

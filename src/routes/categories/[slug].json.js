@@ -3,7 +3,11 @@ import colors from '../../../data/quantumColorsSorted.js'
 const lookup = new Map();
 categories.forEach(category => {
 	const cat = colors[category.slug]
-	lookup.set(category.slug, JSON.stringify(cat));
+	
+	lookup.set(category.slug, JSON.stringify({
+		color: category,
+		colors: cat,
+	}));
 });
 
 export function get(req, res, next) {

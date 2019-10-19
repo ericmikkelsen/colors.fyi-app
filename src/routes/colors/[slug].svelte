@@ -45,7 +45,7 @@
 <style>
   ol {
     margin: 0;
-    padding: 0 0 0 5%;
+    padding: 0;
   }
   li {
     padding: 0;
@@ -62,7 +62,7 @@
 	  color: var(--neutral0);
   }
   header {
-   padding: 5% 0 10% 5%;
+   padding: 5% 0 10%;
   }
   h1 {
     font: var(--f700);

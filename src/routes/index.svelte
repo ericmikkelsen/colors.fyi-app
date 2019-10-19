@@ -61,7 +61,7 @@
 <style>
     ul {
         list-style: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E");
-        padding: 0 0 0 5%;
+        padding: 0;
         margin: 0;
     }
 	li {
@@ -84,7 +84,7 @@
 		opacity: .999999999;
 	}
 	h1 {
-   		padding: 5% 0 10% 5%;
+   		padding: 5% 0 10%;
 		font: var(--f800);
 		margin: 0;
 	}

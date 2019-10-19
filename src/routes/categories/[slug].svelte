@@ -44,7 +44,7 @@
 <style>
     h1 {
         font: var(--f800);
-        padding: 5% 0 10% 5%;
+        padding: 5% 0 10%;
         margin:0;
     }
     ul {
@@ -53,24 +53,24 @@
         margin: 0;
     }
     li {
-        padding: 0 0 0 5%;
+        padding: 0;
     }
     li li {
         float: left;
         margin: 0;
         width: auto;
-        min-width: 10%;
         padding: 0;
     }
     li a {
-        background-color: var(--c1);
+        background-color: var(--c);
         display: block;
         color: #fff;
-        padding: var(--s4);
+        padding: var(--s4) var(--s4);
         width: auto;
         text-align: center;
         font: var(--f600);
         font-family: monospace;
+        text-transform: uppercase;
     }
     :global(.Details--category) {
         display: inline-block;

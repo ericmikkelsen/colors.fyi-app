@@ -20,6 +20,9 @@
 	--f600: 800 var(--s3)/calc(1em + var(--s1)) var(--f);
 	--f700: 800 var(--s4)/calc(1em + var(--s1)) var(--f);
 	--f800: 900 var(--s5)/calc(1em + var(--s1)) var(--f);
+
+	/* list stuff */
+	--list-style-none: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E");
 }
 
 :root,
